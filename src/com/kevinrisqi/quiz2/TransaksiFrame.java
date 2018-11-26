@@ -21,12 +21,12 @@ public class TransaksiFrame extends javax.swing.JFrame {
     public TransaksiFrame() {
         initComponents();
         this.setLocationRelativeTo(null); // Menampilkan frame ke tengah layar
-        codeText.enable(false); // Menonaktifkan textbox codeText
-        itemsComboBox.enable(false); // Menonaktifkan combobox
-        qtyText.enable(false);
-        addButton.enable(false); // Menonaktifkan button
-        removeButton.enable(false);
-        saveButton.enable(false);
+        codeText.setEnabled(false); // Menonaktifkan textbox codeText
+        itemsComboBox.setEnabled(false); // Menonaktifkan combobox
+        qtyText.setEnabled(false);
+        addButton.setEnabled(false); // Menonaktifkan button
+        removeButton.setEnabled(false);
+        saveButton.setEnabled(false);
         
     }
 
@@ -53,6 +53,7 @@ public class TransaksiFrame extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transaksi");
 
         jLabel1.setText("Code");
 
@@ -177,18 +178,19 @@ public class TransaksiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_codeTextActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        itemsComboBox.enable(true); // Mengaktifkan combobox
-        qtyText.enable(true); // Mengaktifkan textbox
-        addButton.enable(true); // Mengaktifkan button
-        removeButton.enable(true);
-        saveButton.enable(true);
+        itemsComboBox.setEnabled(true); // Mengaktifkan combobox
+        qtyText.setEnabled(true); // Mengaktifkan textbox
+        addButton.setEnabled(true); // Mengaktifkan button
+        removeButton.setEnabled(true);
+        saveButton.setEnabled(true);
+        newButton.setEnabled(false);
         Calendar kal = new GregorianCalendar(); // Membuat objek kalendar Gregorian
         int tahun = kal.get(Calendar.YEAR); // Mengisi variable tahun dengan tahun sekarang
         int bulan = kal.get(Calendar.MONTH)+1; // Mengisi varible bulan dengan bulan sekarang
         int hari = kal.get(Calendar.DAY_OF_MONTH); // Mengisi varible hari dengan hari sekarang
         int trk = 1; // Mengisi varible trk dengan nilai 1
-        String tanggal = Integer.toString(tahun) + Integer.toString(bulan) + Integer.toString(hari); // Mengkonversi tahun dari int ke String
-        codeText.setText(tanggal+trk); // Mengisi textbox codeText dengan format tahun bulan 
+        String tanggal = Integer.toString(tahun) + Integer.toString(bulan) + Integer.toString(hari) + trk; // Mengkonversi tahun dari int ke String
+        codeText.setText(tanggal); // Mengisi textbox codeText dengan format tahun bulan 
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -196,7 +198,11 @@ public class TransaksiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-
+        Barang barang = new Barang();
+        barang.setTanggal(codeText.getText());
+        Object barangItem = itemsComboBox.getSelectedItem();
+        barang.setItem((barangItem != null) ? barangItem.toString() : null);
+        barang.setQty(Integer.parseInt(qtyText.getText()));
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
