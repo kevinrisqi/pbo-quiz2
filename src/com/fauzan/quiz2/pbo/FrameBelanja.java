@@ -51,14 +51,21 @@ public class FrameBelanja extends javax.swing.JFrame {
                 codeTextFieldActionPerformed(evt);
             }
         });
+        codeTextField.setEnabled(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kopi", "Susu", "Gula" }));
+        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setEnabled(false);
 
         newButton.setText("New");
 
         addButton.setText("Add");
+        addButton.setEnabled(false);
 
         removeButton.setText("Remove");
+        removeButton.setEnabled(false);
+
+        amountTextField.setEnabled(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,8 +81,10 @@ public class FrameBelanja extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         saveButton.setText("Save");
+        saveButton.setEnabled(false);
 
         cancelButton.setText("Cancel");
+        cancelButton.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
