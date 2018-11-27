@@ -8,6 +8,7 @@ package com.kevinrisqi.quiz2;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,9 +49,10 @@ public class TransaksiFrame extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTransaksi = new javax.swing.JTable();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        lblMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transaksi");
@@ -89,22 +91,22 @@ public class TransaksiFrame extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nama", "Harga", "Jumlah"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblTransaksi);
 
         saveButton.setText("Save");
 
         cancelButton.setText("Cancel");
+
+        lblMessage.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblMessage.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,13 +128,17 @@ public class TransaksiFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(itemsComboBox, 0, 199, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(codeText))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(itemsComboBox, 0, 199, Short.MAX_VALUE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(codeText))
+                                        .addGap(0, 2, Short.MAX_VALUE))
+                                    .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(removeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(newButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,8 +166,10 @@ public class TransaksiFrame extends javax.swing.JFrame {
                                 .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(addButton)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removeButton)
-                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeButton)
+                    .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,10 +207,12 @@ public class TransaksiFrame extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Barang barang = new Barang();
-        barang.setTanggal(codeText.getText());
+//        barang.setTanggal(codeText.getText());
         Object barangItem = itemsComboBox.getSelectedItem();
         barang.setItem((barangItem != null) ? barangItem.toString() : null);
-        barang.setQty(Integer.parseInt(qtyText.getText()));
+//        barang.setQty(Integer.parseInt(qtyText.getText()));
+        DefaultTableModel model = (DefaultTableModel) tblTransaksi.getModel();
+        model.addRow(new Object[]{barangItem.toString(),2000,qtyText.getText()});
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
@@ -248,10 +258,11 @@ public class TransaksiFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JButton newButton;
     private javax.swing.JTextField qtyText;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTable tblTransaksi;
     // End of variables declaration//GEN-END:variables
 }
