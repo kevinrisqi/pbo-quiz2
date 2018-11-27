@@ -4,16 +4,20 @@
  * and open the template in the editor.
  */
 package tika.GUI;
-
+import java.text.SimpleDateFormat;
+import java.util.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import tika.GUI.Transaksi.*;
 /**
  *
  * @author Tika Yln
  */
 public class TransaksiForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TransaksiForm
-     */
+    private int id=0;
+    private String code;
+    
     public TransaksiForm() {
         initComponents();
     }
