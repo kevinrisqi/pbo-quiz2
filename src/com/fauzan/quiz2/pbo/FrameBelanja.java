@@ -62,6 +62,11 @@ public class FrameBelanja extends javax.swing.JFrame {
         jComboBox1.setEnabled(false);
 
         newButton.setText("New");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setText("Add");
         addButton.setEnabled(false);
@@ -155,6 +160,18 @@ public class FrameBelanja extends javax.swing.JFrame {
     private void codeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codeTextFieldActionPerformed
+
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        InputData ID = new InputData();
+        addButton.setEnabled(true);
+        removeButton.setEnabled(true);
+        saveButton.setEnabled(true);
+        cancelButton.setEnabled(true);
+        jComboBox1.setEnabled(true);
+        amountTextField.setEnabled(true);
+        newButton.setEnabled(false);
+        codeTextField.setText(ID.giveID());
+    }//GEN-LAST:event_newButtonActionPerformed
     
     /**
      * @param args the command line arguments
