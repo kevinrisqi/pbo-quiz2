@@ -17,6 +17,14 @@ public class Data {
     protected int hargaBarang;
     
     public Data(String namaBarang, int jumlahBarang, int hargaBarang){
+        if (namaBarang.equals("Kopi")){
+            hargaBarang += 10000;
+        }else if (namaBarang.equals("Susu")){
+            hargaBarang += 20000;
+        }else if (namaBarang.equals("Gula")){
+            hargaBarang += 50000;
+        }
+        
         this.namaBarang = namaBarang;
         this.jumlahBarang = jumlahBarang;
         this.hargaBarang = hargaBarang;
