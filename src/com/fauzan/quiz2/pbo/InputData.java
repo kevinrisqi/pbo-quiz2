@@ -11,8 +11,13 @@ package com.fauzan.quiz2.pbo;
  */
 import com.sun.glass.ui.Size;
 import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class InputData {
     ArrayList<Data> dataPelanggan;
+    int ID = 1;
     
     public InputData(){
         dataPelanggan = new ArrayList();
@@ -42,5 +47,14 @@ public class InputData {
     
     public ArrayList<Data> getData(){
         return dataPelanggan;
+    }
+    
+    public String giveID(){
+        DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
+        Date date = new Date();
+        String dt=String.valueOf(dateFormat.format(date));
+        String id = String.format("%02d", ID);
+        ID++;
+        return dt+id;
     }
 }
