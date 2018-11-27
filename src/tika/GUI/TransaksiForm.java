@@ -17,10 +17,37 @@ public class TransaksiForm extends javax.swing.JFrame {
 
     private int id=0;
     private String code;
+    private DefaultComboBoxModel cbModel;
+    private DefaultTableModel tbModel;
+    private ArrayList<Item> cart = new ArrayList<>();
+    
     
     public TransaksiForm() {
+        Combo comboModel = new Combo();
+        this.cbModel = new DefaultComboBoxModel<>(comboModel.getNama().toArray());
+        
+        Tabel tabelModel = new Tabel(); 
+        this.tbModel = new DefaultTableModel(tabelModel.getColumnName(),0);
+        
         initComponents();
     }
+    
+    private String setCode(){
+        this.incId();
+        String dt = new SimpleDateFormat("yyMMdd").format(new Date());
+        this.code = String.format(dt+"%02d", this.id);
+        return code;
+    }
+    
+    private void incId(){
+        this.id += 1;
+    }
+    
+    private void decId(){
+        this.id -= 1;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
