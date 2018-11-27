@@ -5,6 +5,8 @@
  */
 package com.fauzan.quiz2.pbo;
 
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author fauzan
@@ -16,6 +18,8 @@ public class FrameBelanja extends javax.swing.JFrame {
      */
     public FrameBelanja() {
         initComponents();
+        Table tabel = new Table();
+        jTableItems.setModel(tabel.setTable());
     }
 
     /**
@@ -36,7 +40,7 @@ public class FrameBelanja extends javax.swing.JFrame {
         removeButton = new javax.swing.JButton();
         amountTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableItems = new javax.swing.JTable();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -67,7 +71,7 @@ public class FrameBelanja extends javax.swing.JFrame {
 
         amountTextField.setEnabled(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,7 +82,7 @@ public class FrameBelanja extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableItems);
 
         saveButton.setText("Save");
         saveButton.setEnabled(false);
@@ -150,7 +154,7 @@ public class FrameBelanja extends javax.swing.JFrame {
     private void codeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codeTextFieldActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -186,6 +190,8 @@ public class FrameBelanja extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -196,7 +202,7 @@ public class FrameBelanja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableItems;
     private javax.swing.JButton newButton;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton saveButton;
