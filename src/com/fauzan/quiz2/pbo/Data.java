@@ -12,9 +12,9 @@ package com.fauzan.quiz2.pbo;
 
 import java.util.*;
 public class Data {
-    ArrayList<String> namaBarang = new ArrayList<String>();
-    ArrayList<Integer> jumlahBarang = new ArrayList<Integer>();
-    ArrayList<Integer> hargaBarang = new ArrayList<Integer>();
+    protected ArrayList<String> namaBarang = new ArrayList<String>();
+    protected ArrayList<Integer> jumlahBarang = new ArrayList<Integer>();
+    protected ArrayList<Integer> hargaBarang = new ArrayList<Integer>();
     
     public Data(String namaBarang, int jumlahBarang, int hargaBarang){
         this.namaBarang.add(namaBarang);
@@ -22,4 +22,11 @@ public class Data {
         this.hargaBarang.add(hargaBarang);
     }
     
+    public void checkingDuplicate(String barangDuplikat, int items){
+        for (int i = 0; i<namaBarang.size();i++){
+            if (namaBarang.contains(barangDuplikat)){
+                hargaBarang.set(i, items);
+            }
+        }
+    }
 }
