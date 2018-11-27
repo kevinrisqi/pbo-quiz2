@@ -29,4 +29,10 @@ public class Data {
             }
         }
     }
+    
+    public void deleteAll(){
+        namaBarang.clear();
+        jumlahBarang.clear();
+        hargaBarang.clear();
+    }
 }
