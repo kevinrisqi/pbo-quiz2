@@ -21,4 +21,17 @@ public class Data {
         this.jumlahBarang = jumlahBarang;
         this.hargaBarang = hargaBarang;
     }
+
+    public String getNamaBarang() {
+        return namaBarang;
+    }
+
+    public int getJumlahBarang() {
+        return jumlahBarang;
+    }
+
+    public int getHargaBarang() {
+        return hargaBarang;
+    }
+    
 }
