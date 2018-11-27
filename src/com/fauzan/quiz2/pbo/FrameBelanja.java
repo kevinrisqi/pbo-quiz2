@@ -60,6 +60,11 @@ public class FrameBelanja extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kopi", "Susu", "Gula" }));
         jComboBox1.setSelectedIndex(-1);
         jComboBox1.setEnabled(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         newButton.setText("New");
         newButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +75,11 @@ public class FrameBelanja extends javax.swing.JFrame {
 
         addButton.setText("Add");
         addButton.setEnabled(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         removeButton.setText("Remove");
         removeButton.setEnabled(false);
@@ -172,6 +182,16 @@ public class FrameBelanja extends javax.swing.JFrame {
         newButton.setEnabled(false);
         codeTextField.setText(ID.giveID());
     }//GEN-LAST:event_newButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        InputData dat = null;
+        
+        dat.isiData(jComboBox1.getSelectedItem(),amountTextField.getText(),"0");
+    }//GEN-LAST:event_jComboBox1ActionPerformed
     
     /**
      * @param args the command line arguments
