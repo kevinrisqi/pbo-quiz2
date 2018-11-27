@@ -47,8 +47,73 @@ public class TransaksiForm extends javax.swing.JFrame {
         this.id -= 1;
     }
     
-    
+    private Object[] addItem(String nama, int jumlah){
+        float harga = 0;
+        Combo items = new Combo();
+        for(int i=0; i<items.getNama().size(); i++){
+            if(nama.equalsIgnoreCase(items.getNama().get(i))){
+                harga = items.getHarga().get(i);
+            }
+        }
+        Object[] obj = {
+            nama,harga,jumlah};
+        return obj;
+    }
 
+    private void upadateJumlah(String nama, int tambah){
+        ArrayList<String> item = new ArrayList<>();
+        for (int i=0; i<tbModel.getRowCount(); i++){
+            item.add(tbModel.getValueAt(i, 0).toString());
+        }
+        for(int i=0; i<item.size(); i++){
+            if(item.get(i).equals(nama)){
+                int jumlah = new Integer(tbModel.getValueAt(i,2).toString());
+                
+            }
+        }
+    }
+    
+    private boolean isDuplicate(String nama){
+        boolean result = false;
+        ArrayList<String> item = new ArrayList<>();
+        for(int i=0; i<tbModel.getRowCount(); i++){
+            item.add(tbModel.getValueAt(i,0).toString());
+        }
+        for(String i:item){
+            if(i.equals(nama)){
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    private boolean isEmpty(){
+        return this.TabelListItems.getModel().getRowCount()<=0;
+    }
+    
+    private void cartCheck(){
+        if(isEmpty()){
+            this.Save.setEnabled(false);
+            this.Remove.setEnabled(false); 
+        }else{
+            this.Save.setEnabled(true);
+            this.Remove.setEnabled(true);
+        }
+    }
+    
+    private void newTransaksi(){
+        this.Code.setText("");
+        this.Items.setText("");
+        this.New.setEnabled(true);
+        this.Save.setEnabled(false);
+        this.Cancel.setEnabled(false);
+        this.Add.setEnabled(false);
+        this.Remove.setEnabled(false);
+        this.Items.setEnabled(false);
+        this.pilihanItems.setEnabled(false);
+        this.tbModel.setRowCount(0);
+        this.cart.clear();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,15 +133,15 @@ public class TransaksiForm extends javax.swing.JFrame {
         pilihanItems = new javax.swing.JComboBox<>();
         codeText = new javax.swing.JTextField();
         jml = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Code = new javax.swing.JLabel();
+        Items = new javax.swing.JLabel();
         New = new javax.swing.JButton();
         Add = new javax.swing.JButton();
         Remove = new javax.swing.JButton();
         Save = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabel = new javax.swing.JTable();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -171,9 +236,9 @@ public class TransaksiForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Code");
+        Code.setText("Code");
 
-        jLabel2.setText("Items");
+        Items.setText("Items");
 
         New.setText("New");
         New.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +255,7 @@ public class TransaksiForm extends javax.swing.JFrame {
 
         Cancel.setText("Cancel");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -201,7 +266,7 @@ public class TransaksiForm extends javax.swing.JFrame {
                 "Nama", "Harga", "Jumlah"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +276,7 @@ public class TransaksiForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel2)
+                        .addComponent(Items)
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -226,7 +291,7 @@ public class TransaksiForm extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel1)
+                        .addComponent(Code)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -242,13 +307,13 @@ public class TransaksiForm extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(Code)
                     .addComponent(New))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pilihanItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jml, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(Items)
                     .addComponent(Add))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,9 +379,12 @@ public class TransaksiForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Cancel;
+    private javax.swing.JLabel Code;
+    private javax.swing.JLabel Items;
     private javax.swing.JButton New;
     private javax.swing.JButton Remove;
     private javax.swing.JButton Save;
+    private javax.swing.JTable Tabel;
     private javax.swing.JTextField codeText;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -325,10 +393,7 @@ public class TransaksiForm extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame5;
     private javax.swing.JFrame jFrame6;
     private javax.swing.JFrame jFrame7;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jml;
     private javax.swing.JComboBox<String> pilihanItems;
     // End of variables declaration//GEN-END:variables
