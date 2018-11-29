@@ -251,6 +251,11 @@ public class TransaksiForm extends javax.swing.JFrame {
         });
 
         Add.setText("Add");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
 
         Remove.setText("Remove");
         Remove.addActionListener(new java.awt.event.ActionListener() {
@@ -398,6 +403,20 @@ public class TransaksiForm extends javax.swing.JFrame {
         }
         this.belanja();
     }//GEN-LAST:event_RemoveActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+         //mendapatkan item yang telah dipilih
+        String nama = this.pilihanItems.getSelectedItem().toString() ;
+        //jumlahText disetting sebagai Integer
+        int jumlah = new Integer (this.jml.getText()) ;
+        //mengecek apakah suatu barang ada yang double atau tidak
+        if (isDuplicate(nama)) {
+            upadateJumlah(nama , jumlah) ;
+        } else {
+            tbModel.addRow(addItem(nama , jumlah));
+        }
+        this.belanja () ;
+    }//GEN-LAST:event_AddActionPerformed
 
     /**
      * @param args the command line arguments
