@@ -12,6 +12,7 @@ import javax.swing.table.*;
 public class Tabel extends DefaultTableModel {
     private String[] columns;
     
+    //pengaturan baris dan kolom pada tabel
     public Tabel(){
         this.columns = new String[]{
             "Nama", "Harga", "Jumlah"
