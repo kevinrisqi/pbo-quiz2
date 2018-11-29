@@ -253,6 +253,11 @@ public class TransaksiForm extends javax.swing.JFrame {
         Add.setText("Add");
 
         Remove.setText("Remove");
+        Remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveActionPerformed(evt);
+            }
+        });
 
         Save.setText("Save");
         Save.addActionListener(new java.awt.event.ActionListener() {
@@ -276,11 +281,11 @@ public class TransaksiForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(Items)
-                        .addGap(63, 63, 63)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,9 +298,8 @@ public class TransaksiForm extends javax.swing.JFrame {
                                     .addComponent(jml, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(Code)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(53, 53, 53)
                         .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -378,8 +382,22 @@ public class TransaksiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        
+        newTransaksi();
+        this.decId();
     }//GEN-LAST:event_CancelActionPerformed
+
+    private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
+        if(Tabel.getSelectedRow() <0){
+            String sbr = "Silakan memilih item yang ingin dihapus";
+            JOptionPane.showMessageDialog(this, sbr, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            int count = Tabel.getSelectedRows().length;
+            for(int i=0; i<count; i++){
+                tbModel.removeRow(Tabel.getSelectedRow());
+            }
+        }
+        this.belanja();
+    }//GEN-LAST:event_RemoveActionPerformed
 
     /**
      * @param args the command line arguments
