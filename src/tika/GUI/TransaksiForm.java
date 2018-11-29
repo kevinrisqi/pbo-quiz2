@@ -7,6 +7,7 @@ package tika.GUI;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tika.GUI.Transaksi.*;
 /**
@@ -20,6 +21,8 @@ public class TransaksiForm extends javax.swing.JFrame {
     private DefaultComboBoxModel cbModel;
     private DefaultTableModel tbModel;
     private ArrayList<Item> cart = new ArrayList<>();
+    private Object TableTransaksi;
+    private ArrayList<Item> belanja;
     
     
     public TransaksiForm() {
@@ -88,10 +91,10 @@ public class TransaksiForm extends javax.swing.JFrame {
     }
     
     private boolean isEmpty(){
-        return this.TabelListItems.getModel().getRowCount()<=0;
+        return this.Tabel.getModel().getRowCount()<=0;
     }
     
-    private void cartCheck(){
+    private void belanja(){
         if(isEmpty()){
             this.Save.setEnabled(false);
             this.Remove.setEnabled(false); 
@@ -222,7 +225,7 @@ public class TransaksiForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pilihanItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pilihanItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kopi", "Susu", "Gula" }));
         pilihanItems.setSelectedIndex(-1);
         pilihanItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,20 +255,20 @@ public class TransaksiForm extends javax.swing.JFrame {
         Remove.setText("Remove");
 
         Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
 
         Cancel.setText("Cancel");
-
-        Tabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nama", "Harga", "Jumlah"
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelActionPerformed(evt);
             }
-        ));
+        });
+
+        Tabel.setModel(this.tbModel);
         jScrollPane1.setViewportView(Tabel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,6 +332,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
     private void pilihanItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihanItemsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pilihanItemsActionPerformed
@@ -338,8 +342,44 @@ public class TransaksiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jmlActionPerformed
 
     private void NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewActionPerformed
-        // TODO add your handling code here:
+        this.jml.setText ("1") ;
+        this.New.setEnabled (false) ;
+        this.Cancel.setEnabled (true) ;
+        this.Add.setEnabled (true) ;
+        this.jml.setEnabled (true) ;
+        this.pilihanItems.setEnabled (true) ;
+        this.codeText.setText (this.setCode()) ;
+        
     }//GEN-LAST:event_NewActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        try {
+            //looping untuk setiap tabel
+            for (int i = 0; i < tbModel.getRowCount(); i++) {
+                // menyimpan nama item dan jumlah item menjadi variable
+                String nama = tbModel.getValueAt (i , 0).toString () ;
+                float harga = new Float (tbModel.getValueAt(i , 1).toString()) ;
+                int jumlah = new Integer (tbModel.getValueAt (i , 2).toString()) ;
+                this.cart.add (new Item(nama , harga , jumlah)) ;   
+            }
+            //instansiasi kelas Transaksi dengan kode dan menjalankan penyimpanan belanja
+            Transaksi tsk = new Transaksi (this.code , this.belanja) ;
+            //Stringbuilder untuk menangani output Transaksi
+            StringBuilder sbr = new StringBuilder() ;
+            //menambahkan hasil transaksi
+            sbr.append(tsk.Info()) ;
+            //memanggil dialog dengan StringBuilder
+            JOptionPane.showMessageDialog(this , sbr , "Transaksi" , JOptionPane.INFORMATION_MESSAGE) ;
+            //untuk melakukan transaksi baru
+            newTransaksi () ;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+        
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,4 +437,5 @@ public class TransaksiForm extends javax.swing.JFrame {
     private javax.swing.JTextField jml;
     private javax.swing.JComboBox<String> pilihanItems;
     // End of variables declaration//GEN-END:variables
+
 }

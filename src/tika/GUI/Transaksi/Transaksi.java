@@ -15,9 +15,9 @@ public class Transaksi {
     private ArrayList<Item> items = new ArrayList<>();
     private float total;
 
-    public Transaksi(String code, float total) {
+    public Transaksi(String code, ArrayList<Item> items) {
         this.code = code;
-        this.total = total;
+        this.items = items;
     }
     
     public void setTotal(){
