@@ -11,10 +11,12 @@ import java.util.*;
  */
 public class Transaksi {
     
+    //membuat atribut yang dibutuhkan class Transaksi
     private final String code;
     private ArrayList<Item> items = new ArrayList<>();
     private float total;
 
+    //membuat kontruktor dan diisi dengan parameter
     public Transaksi(String code, ArrayList<Item> items) {
         this.code = code;
         this.items = items;
@@ -28,6 +30,7 @@ public class Transaksi {
         this.total = total;
     }
     
+    //mencetak transaksi
     public String Info(){
         setTotal();
         String str = "";

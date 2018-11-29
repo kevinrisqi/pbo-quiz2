@@ -6,6 +6,8 @@
 package tika.GUI;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +26,7 @@ public class TransaksiForm extends javax.swing.JFrame {
     private Object TableTransaksi;
     private ArrayList<Item> belanja;
     
-    
+    //
     public TransaksiForm() {
         Combo comboModel = new Combo();
         this.cbModel = new DefaultComboBoxModel<>(comboModel.getNama().toArray());
