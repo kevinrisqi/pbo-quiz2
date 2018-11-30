@@ -10,12 +10,12 @@ package com.kevinrisqi.quiz2;
  * @author Anonymous
  */
 public class Barang {
-    private String item;
+    private String name;
     private int qty;
     private float price;
 
-    public Barang(String item, int qty) {
-        this.item = item;
+    public Barang(String name, int qty) {
+        this.name = name;
         this.qty = qty;
     }
 
@@ -23,13 +23,14 @@ public class Barang {
         
     }
 
-    public String getItem() {
-        return item;
+    public String getName() {
+        return name;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setName(String name) {
+        this.name = name;
     }
+
 
     public int getQty() {
         return qty;
@@ -53,7 +54,7 @@ public class Barang {
 
     @Override
     public String toString() {
-        return this.item;
+        return this.name;
     }
     
     

@@ -29,7 +29,7 @@ public class ComboBoxModel {
         return flt;
     }
     
-    public ArrayList<Float> getNames(){
+    public ArrayList<String> getNames(){
         ArrayList<String> str = new ArrayList<>();
         for(String str : this.items.keySet()){
             str.add(item);

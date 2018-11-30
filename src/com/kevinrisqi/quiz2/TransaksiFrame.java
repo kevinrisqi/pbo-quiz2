@@ -6,8 +6,9 @@
 package com.kevinrisqi.quiz2;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,10 +16,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Anonymous
  */
 public class TransaksiFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TransaksiFrame
-     */
+    private int id = 0;
+    private String code;
+    private DefaultComboBoxModel cbModel;
+    private DefaultTableModel tblModel;
+    private ArrayList<Item> cart = new ArrayList<>();
+    
     public TransaksiFrame() {
         initComponents();
         this.setLocationRelativeTo(null); // Menampilkan frame ke tengah layar
