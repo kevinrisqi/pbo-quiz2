@@ -13,8 +13,28 @@ import java.util.ArrayList;
  */
 public class Transaksi {
     private final String code;
-    private ArrayList<Barang> items = new ArrayList<>();
+    private ArrayList<Barang> barang = new ArrayList<>();
     private float total;
     
+    //constructor
+    public Transaksi(String code, ArrayList<Barang> barang){
+        this.code = code;
+        this.barang = barang;
+    }
     
+    // Total
+    public void setTotal(){
+        float total = 0;
+        for(Barang barang : this.barang){
+            total += barang.getTotal();
+        }
+        this.total = total;
+    }
+    
+    //Hasil dari transaksi
+    public String prtDetail(){
+        setTotal();
+        String str = "";
+        str += "Kode\t\t: "+this.code + "\n";
+    }
 }
