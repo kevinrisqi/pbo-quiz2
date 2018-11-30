@@ -37,5 +37,7 @@ public class ComboBoxModel {
         return str;
     }
     
-    
+    public void addItem(String name, float price){
+        this.items.put(name,price);
+    }
 }
