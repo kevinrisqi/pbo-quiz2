@@ -21,7 +21,7 @@ public class TableModel extends DefaultTableModel{
         };
     }
     
-    //Getter dari colums
+    //Getter dari kolom
     public String[] getColumnsName(){
         return this.columns;
     }

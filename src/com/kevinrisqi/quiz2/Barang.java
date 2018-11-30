@@ -10,20 +10,23 @@ package com.kevinrisqi.quiz2;
  * @author Anonymous
  */
 public class Barang {
-    private String name;
-    private int qty;
-    private float price;
+    private String name; // Membuat atribut name
+    private int qty; // Membuat atribut qty
+    private float price; // Membuat atribut price
 
+    //constructor
     public Barang(String name, float price, int qty) {
         this.name = name;
         this.qty = qty;
         this.price = price;
     }
 
+    //contructor
     Barang() {
         
     }
-
+    
+    //setter dan getter dari variable yang sudah di buat
     public String getName() {
         return name;
     }
@@ -49,10 +52,12 @@ public class Barang {
         this.price = price;
     }
     
+    // Menghitung total
     public float getTotal(){
        return this.price * this.qty;
     }
-
+    
+    // Meng - override atribut name
     @Override
     public String toString() {
         return this.name;
