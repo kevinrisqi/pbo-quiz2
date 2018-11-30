@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author user.com
+ * @author falcao
  */
 public class tabelBeli extends DefaultTableModel{
     //berfungsi untuk menyimpan nama kolom
