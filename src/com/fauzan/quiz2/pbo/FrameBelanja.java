@@ -5,6 +5,7 @@
  */
 package com.fauzan.quiz2.pbo;
 
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -12,14 +13,31 @@ import javax.swing.table.TableModel;
  * @author fauzan
  */
 public class FrameBelanja extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FrameBelanja
      */
+    InputData dataBelanja;
+    DefaultTableModel tabelBelanja;
+    
     public FrameBelanja() {
         initComponents();
-        Table tabel = new Table();
-        jTableItems.setModel(tabel.setTable());
+        dataBelanja = new InputData();
+        setTableBelanja();
+    }
+    
+        public final void setTableBelanja(){ //Di method ini tabel saya tidak menampilkan data
+        String [] NamaKolom = {"Nama","Harga","Jumlah"};
+        Object[][] objekData = new Object [dataBelanja.getData().size()][3];
+       
+        for (int i = 0 ; i<dataBelanja.dataPelanggan.size();i++){
+            Data dataPelanggan = null;
+            Object arrData[] = {dataPelanggan.getNamaBarang(), dataPelanggan.getHargaBarang(), dataPelanggan.getJumlahBarang()};
+            objekData[i] = arrData;
+            i++;
+        }
+        tabelBelanja = new DefaultTableModel(objekData, NamaKolom);
+        jTableItems.setModel(tabelBelanja);
     }
 
     /**
@@ -182,15 +200,24 @@ public class FrameBelanja extends javax.swing.JFrame {
         newButton.setEnabled(false);
         codeTextField.setText(ID.giveID());
     }//GEN-LAST:event_newButtonActionPerformed
-
+  
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        InputData dat = new InputData();
         
+
+        dat.isiData((String)jComboBox1.getSelectedItem(),Integer.parseInt(amountTextField.getText()),0);
+        
+        for (int i = 0; i < dat.dataPelanggan.size();i++){
+            Data data = null;
+            dat.getData();
+            System.out.print(data.getNamaBarang()+data.getJumlahBarang()+data.getJumlahBarang());
+        }
+
+        setTableBelanja();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        InputData dat = null;
-        
-        dat.isiData(jComboBox1.getSelectedItem(),amountTextField.getText(),"0");
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
     /**

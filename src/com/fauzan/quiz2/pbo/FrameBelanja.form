@@ -181,6 +181,9 @@
               </Table>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrameBelanja_jTableItems"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

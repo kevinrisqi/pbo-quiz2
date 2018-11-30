@@ -23,26 +23,26 @@ public class InputData {
         dataPelanggan = new ArrayList();
     }
     
-    public int duplicateChecking(String nama, int jumlah){
+    /*public int duplicateChecking(String nama, int jumlah){
             for (int i = 0;i<dataPelanggan.size();i++){
                 if (dataPelanggan.get(i).namaBarang.contains(nama)){
                     return i;
             }
         }
             return -1;
-    }
+    }*/
     
     public void isiData(String nama, int jumlah, int harga){
-        int tmp = duplicateChecking (nama,jumlah);
+        //int tmp = duplicateChecking (nama,jumlah);
         
-        if (tmp >= 0){
-            jumlah += dataPelanggan.get(tmp).jumlahBarang;
+        //if (tmp >= 0){
+            //jumlah += dataPelanggan.get(tmp).jumlahBarang;
+            //Data data = new Data(nama,jumlah,harga);
+            //dataPelanggan.add(data);
+        //}else{
             Data data = new Data(nama,jumlah,harga);
             dataPelanggan.add(data);
-        }else{
-            Data data = new Data(nama,jumlah,harga);
-            dataPelanggan.add(data);
-        }
+        //}
     }
     
     public ArrayList<Data> getData(){
