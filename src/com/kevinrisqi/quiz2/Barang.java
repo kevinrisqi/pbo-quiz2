@@ -12,6 +12,7 @@ package com.kevinrisqi.quiz2;
 public class Barang {
     private String item;
     private int qty;
+    private float price;
 
     public Barang(String item, int qty) {
         this.item = item;
@@ -36,6 +37,18 @@ public class Barang {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
+    public float getTotal(){
+       return this.price * this.qty;
     }
 
     @Override
