@@ -59,4 +59,6 @@ public class Item {
     public double getTotal(){
         return this.harga*this.jumlah;
     }
+    
+    
 }
