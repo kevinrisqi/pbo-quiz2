@@ -25,5 +25,6 @@ public class tabelBeli extends DefaultTableModel{
     //kolomNama getter
     public String[] getKolomNama(){
         return this.kolom;
+    
     }
 }
