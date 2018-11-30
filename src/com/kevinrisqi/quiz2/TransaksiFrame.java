@@ -31,6 +31,9 @@ public class TransaksiFrame extends javax.swing.JFrame {
         addButton.setEnabled(false); // Menonaktifkan button
         removeButton.setEnabled(false);
         saveButton.setEnabled(false);
+        ComboBoxModel comboModel = new ComboBoxModel();
+        this.cbModel = new DefaultComboBoxModel<>(comboModel.getNames().toArray());
+        
         
     }
 
