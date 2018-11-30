@@ -10,26 +10,16 @@ package com.kevinrisqi.quiz2;
  * @author Anonymous
  */
 public class Barang {
-    private String tanggal;
     private String item;
     private int qty;
 
-    public Barang(String tanggal, String item, int qty) {
-        this.tanggal = tanggal;
+    public Barang(String item, int qty) {
         this.item = item;
         this.qty = qty;
     }
 
     Barang() {
         
-    }
-
-    public String getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
     }
 
     public String getItem() {
