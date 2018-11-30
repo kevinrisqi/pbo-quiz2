@@ -11,19 +11,23 @@ package tika.GUI.Transaksi;
  */
 public class Item {
     
+    //memberi atribut yang dibutuhkan
     private String nama;
     private float harga;
     private int jumlah;
     
+    //konstruktor class Item
     public Item(){
     }
     
+    //konstruktor dan parameternya class Item
     public Item(String nama, float harga, int jumlah){
         this.nama = nama;
         this.harga = harga;
         this.jumlah = jumlah;
     }
 
+    //pemberian setter getter
     public String getNama() {
         return nama;
     }
@@ -48,10 +52,12 @@ public class Item {
         this.jumlah = jumlah;
     }
     
+    //rumus mencari total
     public float getTotal(){
         return harga*jumlah;
     }
     
+    //untuk mengonvert to String
     public String toString(){
         return nama;
     }

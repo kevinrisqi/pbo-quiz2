@@ -9,15 +9,20 @@ import javax.swing.table.*;
  *
  * @author Tika Yln
  */
+
+//pengaturan baris dan kolom pada tabel
 public class Tabel extends DefaultTableModel {
+    //membuat aribut
     private String[] columns;
     
-    //pengaturan baris dan kolom pada tabel
+    //konstruktor
     public Tabel(){
         this.columns = new String[]{
             "Nama", "Harga", "Jumlah"
         };
     }
+    
+    //kolom nama
     public String[] getColumnName(){
         return this.columns;
     }

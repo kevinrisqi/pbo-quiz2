@@ -18,6 +18,7 @@ import tika.GUI.Transaksi.*;
  */
 public class TransaksiForm extends javax.swing.JFrame {
 
+    //pemberian atribut
     private int id=0;
     private String code;
     private DefaultComboBoxModel cbModel;
@@ -26,7 +27,7 @@ public class TransaksiForm extends javax.swing.JFrame {
     private Object TableTransaksi;
     private ArrayList<Item> belanja;
     
-    //
+    //membuat kontruktor
     public TransaksiForm() {
         Combo comboModel = new Combo();
         this.cbModel = new DefaultComboBoxModel<>(comboModel.getNama().toArray());
@@ -37,6 +38,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         initComponents();
     }
     
+    //fungsi code dan pengaturan tanggal
     private String setCode(){
         this.incId();
         String dt = new SimpleDateFormat("yyMMdd").format(new Date());
@@ -44,14 +46,17 @@ public class TransaksiForm extends javax.swing.JFrame {
         return code;
     }
     
+    //penambahan id
     private void incId(){
         this.id += 1;
     }
     
+    //pengurangan id
     private void decId(){
         this.id -= 1;
     }
     
+    //penyimpanan item
     private Object[] addItem(String nama, int jumlah){
         float harga = 0;
         Combo items = new Combo();
@@ -65,6 +70,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         return obj;
     }
 
+    //memperbarui fungsi jumlah
     private void upadateJumlah(String nama, int tambah){
         ArrayList<String> item = new ArrayList<>();
         for (int i=0; i<tbModel.getRowCount(); i++){
@@ -78,6 +84,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         }
     }
     
+    //pengecekan item yang ganda
     private boolean isDuplicate(String nama){
         boolean result = false;
         ArrayList<String> item = new ArrayList<>();
@@ -92,10 +99,12 @@ public class TransaksiForm extends javax.swing.JFrame {
         return result;
     }
     
+    //pengecekan tabel yang kosong
     private boolean isEmpty(){
         return this.Tabel.getModel().getRowCount()<=0;
     }
     
+    //mematikan tombol save dan remove jika tabel
     private void belanja(){
         if(isEmpty()){
             this.Save.setEnabled(false);
@@ -106,6 +115,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         }
     }
     
+    //membuat transaksi baru
     private void newTransaksi(){
         this.Code.setText("");
         this.Items.setText("");
@@ -352,6 +362,7 @@ public class TransaksiForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jmlActionPerformed
 
+    //pengaturan button New
     private void NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewActionPerformed
         this.jml.setText ("1") ;
         this.New.setEnabled (false) ;
@@ -363,41 +374,50 @@ public class TransaksiForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_NewActionPerformed
 
+    //pengaturan button Save
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+       
         try {
-            //looping untuk setiap tabel
-            for (int i = 0; i < tbModel.getRowCount(); i++) {
+            //looping tabel
+            for (int i = 0; i < tbModel.getRowCount(); i++) {   
                 // menyimpan nama item dan jumlah item menjadi variable
-                String nama = tbModel.getValueAt (i , 0).toString () ;
-                float harga = new Float (tbModel.getValueAt(i , 1).toString()) ;
-                int jumlah = new Integer (tbModel.getValueAt (i , 2).toString()) ;
-                this.cart.add (new Item(nama , harga , jumlah)) ;   
+                String name = tbModel.getValueAt(i, 0).toString();             
+                float price = new Float(tbModel.getValueAt(i, 1).toString());    
+                int qty = new Integer(tbModel.getValueAt(i, 2).toString());     
+                this.cart.add(new Item(name, price, qty));                      
             }
             //instansiasi kelas Transaksi dengan kode dan menjalankan penyimpanan belanja
-            Transaksi tsk = new Transaksi (this.code , this.belanja) ;
+            Transaksi Trs = new Transaksi(this.code, this.cart); // instantiate Transact class with the current code and previously ommited cart
             //Stringbuilder untuk menangani output Transaksi
-            StringBuilder sbr = new StringBuilder() ;
+            StringBuilder str = new StringBuilder(); // Stringbuilder to handle the transaction output
             //menambahkan hasil transaksi
-            sbr.append(tsk.Info()) ;
-            //memanggil dialog dengan StringBuilder
-            JOptionPane.showMessageDialog(this , sbr , "Transaksi" , JOptionPane.INFORMATION_MESSAGE) ;
+            str.append(Trs.Info()); // append transaction output
             //untuk melakukan transaksi baru
-            newTransaksi () ;
+            JOptionPane.showMessageDialog(this, str, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE); // call the dialog with the stringbuilder's string
+            newTransaksi(); // start a new transaction after;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
+    
+        
     }//GEN-LAST:event_SaveActionPerformed
 
+    //pengaturan button Cancel
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         newTransaksi();
         this.decId();
     }//GEN-LAST:event_CancelActionPerformed
 
+    //pengaturan button remove
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
+        //item yang dipilih untuk dihapus
         if(Tabel.getSelectedRow() <0){
-            String sbr = "Silakan memilih item yang ingin dihapus";
+            //jika tidak ada item yang dipilih
+            String sbr = "Pilih Item yang ingin dihapus";
             JOptionPane.showMessageDialog(this, sbr, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         }else{
+            //menghapus item yang sudah dipilih
             int count = Tabel.getSelectedRows().length;
             for(int i=0; i<count; i++){
                 tbModel.removeRow(Tabel.getSelectedRow());
@@ -406,12 +426,12 @@ public class TransaksiForm extends javax.swing.JFrame {
         this.belanja();
     }//GEN-LAST:event_RemoveActionPerformed
 
+    //pengaturan button add
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-         //mendapatkan item yang telah dipilih
+        //mengambil item yang dipilih
         String nama = this.pilihanItems.getSelectedItem().toString() ;
-        //jumlahText disetting sebagai Integer
         int jumlah = new Integer (this.jml.getText()) ;
-        //mengecek apakah suatu barang ada yang double atau tidak
+        //mengecek item yang ganda
         if (isDuplicate(nama)) {
             upadateJumlah(nama , jumlah) ;
         } else {
