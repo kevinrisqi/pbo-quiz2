@@ -187,6 +187,37 @@ public class TransaksiFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private String setCode(){
+        this.incId();
+        String dt = new SimpleDateFormat("yyMMdd").format(new Date());
+        this.code = String.format(dt+"%02d",this.id);
+        return code;
+    }
+    
+    private void incId(){
+        this.id += 1;
+    }
+    
+    private void decId(){
+        this.id -= 1;
+    }
+    
+    private Object[] addItem(String name, int qty){
+        float price = 0;
+        ComboBoxModel items = new ComboBoxModel();
+        for(int i = 0; i < items.getNames().size(); i++){
+            if(name.equalsIgnoreCase(items.getNames().get(i))){
+                price = items.getPrices().get(i);
+            }
+        }
+        Object [] obj = {
+            name,
+            price,
+            qty
+        };
+        return obj;
+    }
+    
     private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codeTextActionPerformed
@@ -198,13 +229,6 @@ public class TransaksiFrame extends javax.swing.JFrame {
         removeButton.setEnabled(true);
         saveButton.setEnabled(true);
         newButton.setEnabled(false);
-        Calendar kal = new GregorianCalendar(); // Membuat objek kalendar Gregorian
-        int tahun = kal.get(Calendar.YEAR); // Mengisi variable tahun dengan tahun sekarang
-        int bulan = kal.get(Calendar.MONTH)+1; // Mengisi varible bulan dengan bulan sekarang
-        int hari = kal.get(Calendar.DAY_OF_MONTH); // Mengisi varible hari dengan hari sekarang
-        int trk = 1; // Mengisi varible trk dengan nilai 1
-        String tanggal = Integer.toString(tahun) + Integer.toString(bulan) + Integer.toString(hari) + trk; // Mengkonversi tahun dari int ke String
-        codeText.setText(tanggal); // Mengisi textbox codeText dengan format tahun bulan 
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
