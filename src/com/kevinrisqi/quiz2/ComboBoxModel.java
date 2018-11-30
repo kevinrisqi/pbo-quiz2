@@ -13,17 +13,17 @@ import java.util.HashMap;
  * @author Anonymous
  */
 public class ComboBoxModel {
-    private HashMap<String,Float> items = new HashMap<>();
+    private HashMap<String,Float> barang = new HashMap<>();
     
     public ComboBoxModel(){
-        this.items.put("Gula", new Float(3000));
-        this.items.put("Kopi", new Float(2500));
-        this.items.put("Susu", new Float(2000));
+        this.barang.put("Gula", new Float(3000));
+        this.barang.put("Kopi", new Float(2500));
+        this.barang.put("Susu", new Float(2000));
     }
     
     public ArrayList<Float> getPrices(){
         ArrayList<Float> flt = new ArrayList<>();
-        for(float item : this.items.values){
+        for(float item : this.barang.values()){
             flt.add(item);
         }
         return flt;
@@ -31,13 +31,13 @@ public class ComboBoxModel {
     
     public ArrayList<String> getNames(){
         ArrayList<String> str = new ArrayList<>();
-        for(String str : this.items.keySet()){
+        for(String item : this.barang.keySet()){
             str.add(item);
         }
         return str;
     }
     
     public void addItem(String name, float price){
-        this.items.put(name,price);
+        this.barang.put(name,price);
     }
 }

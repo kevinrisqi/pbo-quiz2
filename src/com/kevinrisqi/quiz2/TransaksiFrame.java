@@ -20,7 +20,7 @@ public class TransaksiFrame extends javax.swing.JFrame {
     private String code;
     private DefaultComboBoxModel cbModel;
     private DefaultTableModel tblModel;
-    private ArrayList<Item> cart = new ArrayList<>();
+    private ArrayList<Barang> cart = new ArrayList<>();
     
     public TransaksiFrame() {
         initComponents();
@@ -34,6 +34,8 @@ public class TransaksiFrame extends javax.swing.JFrame {
         ComboBoxModel comboModel = new ComboBoxModel();
         this.cbModel = new DefaultComboBoxModel<>(comboModel.getNames().toArray());
         
+        TableModel tableModel = new TableModel();
+        this.tblModel = new DefaultTableModel(tableModel.getColumnsName(),0);
         
     }
 
@@ -236,13 +238,7 @@ public class TransaksiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        Barang barang = new Barang();
-//        barang.setTanggal(codeText.getText());
-        Object barangItem = itemsComboBox.getSelectedItem();
-        barang.setItem((barangItem != null) ? barangItem.toString() : null);
-//        barang.setQty(Integer.parseInt(qtyText.getText()));
-        DefaultTableModel model = (DefaultTableModel) tblTransaksi.getModel();
-        model.addRow(new Object[]{barangItem.toString(),2000,qtyText.getText()});
+        
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**

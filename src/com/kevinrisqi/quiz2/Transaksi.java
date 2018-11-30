@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Transaksi {
     private final String code;
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Barang> items = new ArrayList<>();
     private float total;
     
     
