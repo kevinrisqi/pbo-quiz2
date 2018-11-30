@@ -14,9 +14,10 @@ public class Barang {
     private int qty;
     private float price;
 
-    public Barang(String name, int qty) {
+    public Barang(String name, float price, int qty) {
         this.name = name;
         this.qty = qty;
+        this.price = price;
     }
 
     Barang() {
