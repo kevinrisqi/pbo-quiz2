@@ -310,14 +310,14 @@ public class transaksi extends javax.swing.JFrame {
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // mengecek apakah ada baris yang dipilih
-        if(listItem.getSelectedRow() <0){
+        if(table.getSelectedRow() <0){
             String z = "Silahkan memilih item yang mau diremove";
             JOptionPane.showMessageDialog(this, z,"Information",JOptionPane.INFORMATION_MESSAGE);
         }else{
             // jika ada baris yang dipilih, baris itu akan dihapus
-            int count = listItem.getSelectedRows().length;
+            int count = table.getSelectedRows().length;
             for(int i = 0; i < count; i++){
-                tabelModel.removeRow(listItem.getSelectedRow);
+                tabelModel.removeRow(table.getSelectedRow());
             }
         }
             this.order();
